@@ -22,3 +22,6 @@ class HeaderElement(BasePage):
     def search_text(self, text):
         self.fill(self.main_locators.SEARCH_INPUT, text)
         self.wait_and_click(self.main_locators.SUBMIT)
+
+    def click_on_who_we_serve(self):
+        self.wait_and_click(self.main_locators.HEADER_WHO_WE_SERVE)

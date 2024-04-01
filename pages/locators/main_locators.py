@@ -1,2 +1,13 @@
 class MainLocators:
     FIND_YOUR_FRONTLINE = '//*[contains(text(), "Find your Frontline")]'
+    ACTIVE_TAB = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Human")]'
+    # ACTIVE_TAB = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Analytics")]'
+    GROUP_BUTTONS = '//h2[contains(text(), "Our Suites")]'
+    BUTTON_1 = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Human")]'
+    BUTTON_2 = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Student")]'
+    BUTTON_3 = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Business")]'
+    BUTTON_4 = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Analytics")]'
+    TEXT_1 = '//*[contains(text(), "Create an environment")]'
+    TEXT_2 = '//*[contains(text(), "Efficient classroom")]'
+    TEXT_3 = '//*[contains(text(), "Ready to free")]'
+    TEXT_4 = '//*[contains(text(), "Don’t let vital")]'

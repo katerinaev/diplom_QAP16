@@ -14,6 +14,14 @@ class BasePage():
     def get_element(self, locator):
         return self.driver.find_element(By.XPATH, locator)
 
+    def get_attribute(self, locator, attribute):
+        element = self.driver.find_element(By.XPATH, locator)
+        return element.get_attribute(attribute)
+
+    def get_text(self, locator):
+        element = self.driver.find_element(By.XPATH, locator)
+        return element.text
+
     def wait_for(self, locator, time_out=10):
         try:
             return WebDriverWait(self.driver, time_out).until(
@@ -40,13 +48,18 @@ class BasePage():
         except TimeoutException:
             assert False, f'Element {locator} doesnt found'
 
+    def force_click(self, element):
+        self.driver.execute_script("arguments[0].click();", element)
+
     def open(self, url):
         self.driver.get(url)
 
+    @allure.step("Fill input {locator} {text}")
     def fill(self, locator, text):
         element = self.wait_for(locator)
         element.send_keys(text)
 
+    @allure.step("Press enter")
     def press_enter(self):
         actions = ActionChains(self.driver)
         actions.send_keys(Keys.ENTER)
@@ -54,3 +67,7 @@ class BasePage():
     @allure.step("Assert text is visible")
     def assert_text(self, text):
         assert self.wait_for(f'//*[contains(text(), "{text}")]'), "Text is not visible"
+
+    def scroll_to_element(self, locator):
+        element = self.get_element(locator)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
