@@ -3,3 +3,4 @@ class HeaderLocators:
     SEARCH_INPUT = '//*[contains(@class, "search-input")]'
     SUBMIT = '//*[@type="submit"]'
     HEADER_WHO_WE_SERVE = '//ul[@id="primary-menu"]//a[text()="Who We Serve"]'
+    BUTTON_GET_STARTED = '//*[contains(@class, "menu-btn")]'

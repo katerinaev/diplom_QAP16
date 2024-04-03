@@ -1,2 +1,3 @@
 from pages.locators.main_locators import MainLocators
 from pages.locators.who_we_serve_locators import WhoWeServeLocators
+from pages.locators.get_srarted_locators import GetStartedLocators

@@ -1,0 +1,10 @@
+class GetStartedLocators:
+    GET_STARTED_TITLE = '//h1[text()="Let’s Take a First Step – Together"]'
+    FIRST_NAME = '//input[@name="FirstName"]'
+    LAST_NAME = '//input[@name="LastName"]'
+    EMAIL = '//input[@name="Email"]'
+    JOB_FUNCTION = '//select[@name="jobFunction"]'
+    OPTION_TEACHER = '//option[@value="Teacher"]'
+    COMMENTS = '//textarea[@name="Lead_Comments__c"]'
+    BUTTON_REQUEST = '//button[text()="Request a Demo"]'
+    REPLY_TO_REQUEST = '//h4[text()="Thanks for your interest in Frontline Education!"]'

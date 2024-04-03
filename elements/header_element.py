@@ -25,3 +25,6 @@ class HeaderElement(BasePage):
 
     def click_on_who_we_serve(self):
         self.wait_and_click(self.main_locators.HEADER_WHO_WE_SERVE)
+
+    def click_on_get_started(self):
+        self.wait_and_click(self.main_locators.BUTTON_GET_STARTED)

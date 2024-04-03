@@ -6,6 +6,7 @@ from pages.locators import MainLocators
 
 
 @allure.title('Check tab attribute')
+@pytest.mark.smoke
 def test_tab_attribute(driver):
     main_page = MainPage(driver)
     main_page.open_page()

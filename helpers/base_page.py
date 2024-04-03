@@ -48,8 +48,8 @@ class BasePage():
         except TimeoutException:
             assert False, f'Element {locator} doesnt found'
 
-    def force_click(self, element):
-        self.driver.execute_script("arguments[0].click();", element)
+    def force_click(self, locator):
+        return self.driver.execute_script("arguments[0].click();", self.get_element(locator))
 
     def open(self, url):
         self.driver.get(url)
