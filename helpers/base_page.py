@@ -107,10 +107,6 @@ class BasePage():
     def close_current_tab(self):
         self.driver.close()
 
-    # def return_to_tab(self):
-    #     tabs = self.driver.window_handles
-    #     self.driver.switch_to.window(tabs[0])
-
     def switch_to_main_tab(self):
         tabs = self.driver.window_handles
         self.driver.switch_to.window(tabs[0])

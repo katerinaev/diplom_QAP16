@@ -1,12 +1,9 @@
-from datetime import time
-from time import sleep
-
 import allure
 import pytest
 
-from pages import MainPage
 from pages.get_started_page import GetStartedPage
 from elements.header_element import HeaderElement
+
 
 @allure.title('Fill form')
 @pytest.mark.skip
@@ -24,4 +21,3 @@ def test_fill_form_request_demo(driver):
     get_started_page.fill_comments('test')
     get_started_page.click_on_request_a_demo()
     get_started_page.assert_text_on_request_demo()
-

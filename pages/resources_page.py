@@ -30,6 +30,11 @@ class ResourcesPage(BasePage):
     def click_on_option(self, locator):
         self.wait_and_click(locator)
 
+    # @allure.step("Assert option is selected")
+    # def assert_option_is_selected(self, locator):
+    #     assert '' in self.get_attribute(locator, 'selected')
+
     @allure.step("Assert option is selected")
     def assert_option_is_selected(self, locator):
-        assert '' in self.get_attribute(locator, 'selected')
+        element = self.get_element(locator)
+        assert element.is_selected(), f"Option located by '{locator}' is not selected"

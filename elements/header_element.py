@@ -1,6 +1,5 @@
 from data import DOMEN
 from helpers.base_page import BasePage
-from pages.main_page import MainPage
 from elements.locators import HeaderLocators
 
 
