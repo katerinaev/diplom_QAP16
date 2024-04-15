@@ -1,4 +1,5 @@
 class MainLocators:
+    COOKIE_I_UNDERSTAND = '//button[@id="onetrust-accept-btn-handler"]'
     FIND_YOUR_FRONTLINE = '//*[contains(text(), "Find your Frontline")]'
     ACTIVE_TAB = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Human")]'
     # ACTIVE_TAB = '//*[contains(@class, "text-[#D6DEE1]")][contains(text(), "Analytics")]'

@@ -52,6 +52,8 @@ def driver(request):
     driver.close()
     driver.quit()
     print('Finish driver\n')
+
+
 def pytest_addoption(parser):
     parser.addoption(
         '--headless',

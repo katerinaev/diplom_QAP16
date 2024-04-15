@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.select import Select
 
 
 class BasePage():
@@ -22,7 +23,7 @@ class BasePage():
         element = self.driver.find_element(By.XPATH, locator)
         return element.text
 
-    def wait_for(self, locator, time_out=10):
+    def wait_for(self, locator, time_out=15):
         try:
             return WebDriverWait(self.driver, time_out).until(
                 EC.element_to_be_clickable((By.XPATH, locator))
@@ -59,6 +60,21 @@ class BasePage():
         element = self.wait_for(locator)
         element.send_keys(text)
 
+    @allure.step("Clear input {locator}")
+    def clear_input(self, locator):
+        element = self.wait_for(locator)
+        element.clear()
+
+    @allure.step("Select by {value}")
+    def select_by_value(self, locator, value):
+        select = Select(self.wait_for(locator))
+        select.select_by_value(value)
+
+    @allure.step("Select by {text}")
+    def select_by_text(self, locator, text):
+        select = Select(self.wait_for(locator))
+        select.select_by_visible_text(text)
+
     @allure.step("Press enter")
     def press_enter(self):
         actions = ActionChains(self.driver)
@@ -71,3 +87,30 @@ class BasePage():
     def scroll_to_element(self, locator):
         element = self.get_element(locator)
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+
+    def close_alert(self):
+        alert = self.driver.switch_to_alert
+        print(alert.text)
+        alert.accept()
+
+    def switch_to_frame(self, locator):
+        iframe = self.get_element(locator)
+        self.driver.switch_to.frame(iframe)
+
+    def exit_from_frame(self):
+        self.driver.switch_to.default_content()
+
+    def switch_to_new_tab(self):
+        tabs = self.driver.window_handles
+        self.driver.switch_to.window(tabs[-1])
+
+    def close_current_tab(self):
+        self.driver.close()
+
+    # def return_to_tab(self):
+    #     tabs = self.driver.window_handles
+    #     self.driver.switch_to.window(tabs[0])
+
+    def switch_to_main_tab(self):
+        tabs = self.driver.window_handles
+        self.driver.switch_to.window(tabs[0])

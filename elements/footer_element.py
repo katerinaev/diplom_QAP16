@@ -1,5 +1,6 @@
 import allure
 
+from data import DOMEN
 from helpers.base_page import BasePage
 
 
@@ -8,10 +9,29 @@ class FooterElement(BasePage):
     FOOTER_WHO_WE_SERVE = '//*[contains(@class, "gap-y-3")]//*[text()="{footer_who_we_serve}"]'
     FOOTER_ABOUT_US = '//*[contains(@class, "gap-y-3")]//*[text()="{footer_about_us}"]'
     FOOTER_CONTACT = '//*[contains(@class, "gap-y-3")]//*[text()="{footer_contact}"]'
+    FACEBOOK_ICON = '//*[@aria-label="Connect on Facebook"]'
+    LINKEDIN_ICON = '//*[@aria-label="Connect on LinkedIn"]'
+    TWITTER_ICON = '//*[@aria-label="Connect on Twitter"]'
+    INSTAGRAM_ICON = '//*[@aria-label="Connect on Instagram"]'
+    YOUTUBE_ICON = '//*[@aria-label="Connect on Youtube"]'
+    COOKIE_CLOSE = '//*[contains(@class, "onetrust-close-btn-ui")]'
+    COOKIE_ACCEPT = '//button[text()="I Understand"]'
 
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
+
+    def open_page(self):
+        self.open(DOMEN)
+
+    def click_on_cookie_close(self):
+        self.wait_and_click(self.COOKIE_CLOSE)
+
+    def click_on_accept_cookie(self):
+        self.wait_and_click(self.COOKIE_ACCEPT)
+
+    def click_on_social_media_icon(self, locator):
+        self.force_click(locator)
 
     @allure.step("Assert footer what we do is visible")
     def assert_footer_what_we_do_visible(self):
@@ -45,3 +65,7 @@ class FooterElement(BasePage):
     def assert_footer_contact_visible(self):
         self.wait_for(self.FOOTER_CONTACT.format(footer_contact='Get Started'))
         self.wait_for(self.FOOTER_CONTACT.format(footer_contact='Schedule a Demo'))
+
+    @allure.step("Assert social media open")
+    def assert_social_media_open(self, media_url):
+        assert self.driver.current_url == media_url

@@ -7,6 +7,7 @@ from elements.header_element import HeaderElement
 
 
 @allure.title('Search')
+@pytest.mark.search
 @pytest.mark.parametrize("input,expected", [
     ('school', 'The Complete Guide To K-12 School Device Management'),
     ('       ', 'Modules'),
