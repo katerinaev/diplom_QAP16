@@ -1,4 +1,5 @@
 DOMEN = 'https://www.frontlineeducation.com'
+DOMEN_API = 'https://petstore.swagger.io/'
 
 GET_STARTED = f"{DOMEN}/contact-us/get-a-demo/"
 RESOURCES = f"{DOMEN}/resource-center/"

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -52,6 +54,24 @@ def driver(request):
     driver.close()
     driver.quit()
     print('Finish driver\n')
+
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    setattr(item, "rep_" + rep.when, rep)
+
+
+def test_failed_checker(request):
+    yield
+    if request.node.rep_setup.failed:
+        print("FAILED", request.node.id)
+    elif request.node.rep_setup.passed:
+        if request.node.rep_call.failed:
+            driver = request.node.funcargs['driver']
+            file_name = f'{request.node.nodeid}_{datetime.today().strftime("%Y-%m-%d_%H:%M")}.png'.replace("/", "_").replace("::", "__")
+            driver.save_screenshot(file_name)
 
 
 def pytest_addoption(parser):
